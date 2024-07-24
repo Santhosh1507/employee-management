@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import api from "../api/api";
 
 const EmployeeModal = ({ employee, onClose, mode, onUpdate }) => {
   const [activeTab, setActiveTab] = useState("details");
@@ -33,7 +34,7 @@ const EmployeeModal = ({ employee, onClose, mode, onUpdate }) => {
     const id = employee._id;
 
     try {
-      await axios.put(`http://localhost:5000/api/employees/${id}`, formData, {
+      await api.put(`/api/employees/${id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
